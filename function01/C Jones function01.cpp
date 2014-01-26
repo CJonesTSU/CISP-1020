@@ -44,7 +44,7 @@ int main()
 }
 
 /************************************
-*      non-member functions
+*      functions
 *************************************/
 void noArgsNoRet()
 {
@@ -67,4 +67,10 @@ void noArgsNoRet()
     // do our calculations
     sqFeet = length * width;
     acres = sqFeet / SQF_IN_ACRE;
+    
+    // Build our output
+    cout << "A parcel of land with the dimensions of\n";
+	cout << "\tlength\t" << length << "\n";
+	cout << "\twidth\t" << width << "\n";
+    cout << "contains " << acres << " acres" << "\n";   
 }
