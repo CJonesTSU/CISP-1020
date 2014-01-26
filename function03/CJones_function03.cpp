@@ -1,16 +1,17 @@
 /********************************************************
-*  Name:           function02
+*  Name:           function03
 *  Author:         Chris Jones
 *  Date due:       2014-01-27 
-*  Description:    Write a function that takes two arguments and returns
-*                  nothing.
+*  Description:    Write a function that takes no arguments and returns
+*                  a value represent the acreage.
 *
-*                  In main function grab two floats (length and 
-*                  width).  Pass those to our function and calculate 
-*                  the square footage 
+*                  In function grab two floats (length and 
+*                  width).  Calculate the square footage and acreage,
+*                  (by definition 1 acre = 43560.174 square feet).
+*                  While in the function print the header, length and width
 *                  
-*                  Then convert that to acres (by definition 
-*                  1 acre = 43560.174 square feet).
+*                  Return the acreage to main and generate our remaining 
+*                  output.
 *
 *                  Output variables per the assignment
 ********************************************************/
@@ -30,7 +31,7 @@ using namespace std;
 /*************************************
 *     function prototype
 *************************************/
-void hasArgsNoRet(float length, float width);
+float noArgsHasRet();
 
 /************************************
 *      global variables
@@ -42,19 +43,11 @@ int main()
     /************************************
     *      local variables
     *************************************/
-    
-    float length = 0.0;     // The length of the area as input by user
-    float width = 0.0;      // The width of the area as input by user
+    float acres = 0.0;      // The acreage as calculated     
 
-    // Get our inputs
-    cout << "Please enter the length of your plot: ";
-    cin >> length;
-    cout << "Please enter the width of your plot: ";
-    cin >> width;
-    cout << "\n\n";
     
-    hasArgsNoRet(length, width);
-
+    acres = noArgsHasRet();
+    cout << "contains " << acres << " acres" << "\n";   
     system("pause");
     return 0;
 }
@@ -62,16 +55,23 @@ int main()
 /************************************
 *      functions
 *************************************/
-void hasArgsNoRet(float length, float width)
+float noArgsHasRet()
 {
     /************************************
     *      local variables
     *************************************/
-    
+    float length = 0.0;     // The length of the area as input by user
+    float width = 0.0;      // The width of the area as input by user
     float sqFeet = 0.0;     // The square footage as calculated
-    float acres = 0.0;      // The acreage as calculated
-    
-    
+    float acres = 0.0;      // The acreage as calculated    
+
+    // Get our inputs
+    cout << "Please enter the length of your plot: ";
+    cin >> length;
+    cout << "Please enter the width of your plot: ";
+    cin >> width;
+    cout << "\n\n";    
+
     // do our calculations
     sqFeet = length * width;
     acres = sqFeet / SQF_IN_ACRE;
@@ -80,5 +80,7 @@ void hasArgsNoRet(float length, float width)
     cout << "A parcel of land with the dimensions of\n";
 	cout << "\tlength\t" << length << "\n";
 	cout << "\twidth\t" << width << "\n";
-    cout << "contains " << acres << " acres" << "\n";   
+    
+    //return
+    return acres;
 }
