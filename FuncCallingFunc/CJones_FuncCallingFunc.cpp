@@ -182,7 +182,7 @@ float volumeCylinder(float radiusIn, float heightIn)
 float volumeCone(float radiusIn, float heightIn)
 {
    float volume;
-   volume = ((areaCircle(radiusIn) * heightIn)) * ((.3333333333));
+   volume = (areaCircle(radiusIn) * heightIn) * (.3333333333);
    return volume;
 }
 
