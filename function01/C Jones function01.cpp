@@ -22,7 +22,7 @@ using namespace std;
 /************************************
 *     defines
 *************************************/
-#define  PI  3.14159
+
 
 /*************************************
 *     function prototype
@@ -35,21 +35,8 @@ void noArgsNoRet() ;
 
 int main()
 {
-    /************************************
-    *      local variables
-    *************************************/
-     int inNum;
-     cout << "go Buffalo!!!!" << endl;
-     cout << "the value of PI is " << PI << "\n";
-     
-     cout << "\nenter a number 0~2: ";
-     cin >> inNum;
-     
-     cout << "you entered a " << inNum << "\n";
-     
-     // function call
-     exampleOfFunction();
-     
+     noArgsNoRet();
+
      system("pause");
      return 0;
 }
@@ -57,7 +44,7 @@ int main()
 /************************************
 *      non-member functions
 *************************************/
-void exampleOfFunction()
+void noArgsNoRet()
 {
     /************************************
     *      local variables
