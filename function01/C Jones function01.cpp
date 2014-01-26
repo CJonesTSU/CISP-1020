@@ -23,7 +23,7 @@ using namespace std;
 /************************************
 *     defines
 *************************************/
-
+#define SQF_IN_ACRE 43560.174; // the number of square feet in an acre
 
 /*************************************
 *     function prototype
@@ -33,6 +33,7 @@ void noArgsNoRet() ;
 /************************************
 *      global variables
 *************************************/
+
 
 int main()
 {
@@ -57,4 +58,13 @@ void noArgsNoRet()
     float acres = 0.0;      // The acreage as calculated
     
     // Get out inputs
+    cout << "Please enter the length of your plot: ";
+    cin >> length;
+    cout << "Please enter the width of your plot: ";
+    cin >> width;
+    cout << "\n\n";
+    
+    // do our calculations
+    sqFeet = length * width;
+    acres = sqFeet / SQF_IN_ACRE;
 }
