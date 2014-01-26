@@ -28,7 +28,7 @@ using namespace std;
 /*************************************
 *     function prototype
 *************************************/
-void noArgsNoRet() ;
+void noArgsNoRet();
 
 /************************************
 *      global variables
@@ -57,7 +57,7 @@ void noArgsNoRet()
     float sqFeet = 0.0;     // The square footage as calculated
     float acres = 0.0;      // The acreage as calculated
     
-    // Get out inputs
+    // Get our inputs
     cout << "Please enter the length of your plot: ";
     cin >> length;
     cout << "Please enter the width of your plot: ";
