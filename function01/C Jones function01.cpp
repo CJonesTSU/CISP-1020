@@ -17,6 +17,7 @@
 *     libraries
 ****************************/
 #include <iostream>            // needed for Cin and Cout
+#include <cstdlib>             // need for call to system()
 using namespace std;
 
 /************************************
@@ -50,5 +51,10 @@ void noArgsNoRet()
     *      local variables
     *************************************/
     
-    // your code
+    float length = 0.0;     // The length of the area as input by user
+    float width = 0.0;      // The width of the area as input by user
+    float sqFeet = 0.0;     // The square footage as calculated
+    float acres = 0.0;      // The acreage as calculated
+    
+    // Get out inputs
 }
