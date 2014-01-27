@@ -1,0 +1,5 @@
+# stuff we don't want to version
+# ignore objects and archives, anywhere in the tree.
+     *.[oa]
+     *.exe
+     
