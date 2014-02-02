@@ -64,7 +64,7 @@ int main()
     // Generate out output
     cout << endl << endl;
     cout << "****  \"The Entity Entered\"  ****" << endl;
-    cout << "ID\t\t" cout stpPX->ID << endl;
+    cout << "ID\t\t"<< cout << stpPX->ID << endl;
  
     stpPX->planet = "Mars";
     cout << stpPX->planet << endl;
