@@ -1,4 +1,15 @@
 /********************************************************
+*   Name:           StructPointer
+*   Author:         Chris Jones
+*   Date due:       2014-02-03
+*   Description:    Modify the program provided to use
+*                   pointers to access the structure
+*                   members
+*
+*
+**********************************************************/
+
+/********************************************************
 *  Name:           Struct01
 *  Author:         Debra Bone
 *  Date due:       01/23/14
@@ -17,7 +28,6 @@ using namespace std;
 /************************************
 *     defines
 *************************************/
-//#define  PI  3.14159 
 /************************************
 *      global variables
 *************************************/
@@ -31,22 +41,40 @@ struct starTrekPersonel     //Create a struct with the following data items:
        string zip;         //f.	String	zip
        string planet;      //g.	String	planet
 };
+
+
 int main()
 {
     /*1.	declare a StarTrekPersonel struct named stpSample
      *2.	create (instantiate) the variable */
-     starTrekPersonel* stpPX = new  starTrekPersonel;
-     
-     stpPX->planet = "Mars";
-     cout << stpPX->planet << endl;
+
+    /*********************************
+    *    local variables
+    *********************************/
+    starTrekPersonel* stpPX = new  starTrekPersonel;
+    
+    // Get our input
+    cout << "Welcome to the Star Fleet Entity Identification Portal" << endl;
+    cout << endl;
+    cout << "Please enter the ID of the entity: ";
+    getline(cin, stpPX->ID);         
+ 
+
+
+    // Generate out output
+    cout << endl << endl;
+    cout << "****  \"The Entity Entered\"  ****" << endl;
+    cout << "ID\t\t" cout stpPX->ID << endl;
+ 
+    stpPX->planet = "Mars";
+    cout << stpPX->planet << endl;
      
      (*stpPX).name = "James T. Kirk";
      cout << (*stpPX).name << endl;
      
      cout << stpPX  << endl;
      
-     cout << &stpPX->zip
-       << endl;    
+     cout << &stpPX->zip << endl;    
      
      //starTrekPersonel stp;
      //cout << stp.name << endl;
