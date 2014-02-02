@@ -58,72 +58,31 @@ int main()
     cout << endl;
     cout << "Please enter the ID of the entity: ";
     getline(cin, stpPX->ID);         
- 
+    cout << "Please enter the Name of the entity: ";
+    getline(cin, stpPX->name);
+    cout << "Please enter the Address of the entity: ";
+    getline(cin, stpPX->address);
+    cout << "Please enter the City of the entity: ";
+    getline(cin, stpPX->city);
+    cout << "Please enter the State of the entity: ";
+    getline(cin, stpPX->state);
+    cout << "Please enter the Zip of the entity: ";
+    getline(cin, stpPX->zip);
+    cout << "Please enter the Planet of the entity: ";
+    getline(cin, (*stpPX).planet);  // just did this with the *deref so you knew I could
 
 
     // Generate out output
     cout << endl << endl;
-    cout << "****  \"The Entity Entered\"  ****" << endl;
-    cout << "ID\t\t"<< cout << stpPX->ID << endl;
- 
-    stpPX->planet = "Mars";
-    cout << stpPX->planet << endl;
-     
-     (*stpPX).name = "James T. Kirk";
-     cout << (*stpPX).name << endl;
-     
-     cout << stpPX  << endl;
-     
-     cout << &stpPX->zip << endl;    
-     
-     //starTrekPersonel stp;
-     //cout << stp.name << endl;
- /************************    
-    //3.	using cin and cout to load in the values to the ID
-     cout << "\n Enter the ID : ";
-     //cin.ignore();     //to skip the remaining '\n' character 
-     //getline (cin, stpSample.ID); 
-     cin >> stpSample.ID;
-     
-    //3.	using cin and cout to load in the values to the name
-     cout << "Enter the name : ";
-     //rgcin.ignore();     //to skip the remaining '\n' character 
-     cin.ignore();
-     getline(cin, stpSample.name); 
-     
-    //3.	using cin and cout to load in the values to the address
-     cout << "Enter the address : "; 
-     getline(cin, stpSample.address);
-    
-   //3.	using cin and cout to load in the values to the city  
-     cout << "Enter the city : ";
-     cin >> stpSample.city; 
-     //cin.ignore();     //to skip the remaining '\n' character 
-     //getline(cin, stpSample.city); 
-     
-    //3.	using cin and cout to load in the values to the state
-     cout << "Enter the state : ";
-     cin >> stpSample.state; 
-     
-    //3.	using cin and cout to load in the values to the zip
-      cout << "Enter the zip : ";
-      cin >> stpSample.zip; 
-           
-    //3.	using cin and cout to load in the values to the planet
-      cout << "Enter the planet : ";
-      cin >> stpSample.planet;      
+    cout << "*******  \"The Entity Entered\"  *******" << endl;
+    cout << "   ID:\t\t\t"<< stpPX->ID << endl;
+    cout << "   Name:\t\t"<< stpPX->name<< endl;
+    cout << "   Address:\t\t"<< stpPX->address << endl;
+    cout << "   City:\t\t"<< stpPX->city<< endl;
+    cout << "   State:\t\t"<< stpPX->state<< endl;
+    cout << "   Zip:\t\t\t"<< stpPX->zip << endl;
+    cout << "   Planet:\t\t"<< (*stpPX).planet << endl;
 
-      
-    //4.	using cout output your stpSample 
-     cout << "\n \n *** *  \"the strSample field\" **** " << endl;
-     cout << "     ID      " << stpSample.ID << endl;
-     cout << "     name    " << stpSample.name << endl;
-     cout << "     address " << stpSample.address << endl;
-     cout << "     city    " << stpSample.city << endl;
-     cout << "     state   " << stpSample.state << endl;
-     cout << "     zipp    " << stpSample.zip << endl;
-     cout << "     planet  " << stpSample.planet << endl;
- ************************/         
      system("pause");
      return 0;
 }
