@@ -17,6 +17,7 @@
 #include <cstdlib>
 using namespace std;
 
+
 /************************************
 *     defines
 *************************************/
@@ -44,10 +45,10 @@ int main()
     float* pArea;           // will be used to return the surface area
     float* pVolume;         // used to return the volume of the cylinder
 
+    // grab memory for our return values
     pArea = new float;
     pVolume = new float;
      
-
     // Get our input
     cout << "Please enter the radius of your cylinder: ";
     cin >> inRadius;
@@ -57,15 +58,21 @@ int main()
     // function call
     arithmetic(inHeight, inRadius, pArea, pVolume); 
 
-    // Generate out output
+    // Generate output
     cout << endl << endl;
     cout << "*** Using the pointers ***\n";
     cout << "  area:\t\t" << *pArea << "\n";
     cout << "  volume:\t" << *pVolume << "\n";    
 
+    // clean up
+    delete pArea;
+    delete pVolume;
+    pArea = 0;
+    pVolume = 0;
 
-     system("pause");
-     return 0;
+    // pause for user
+    system("pause");
+    return 0;
 }
 
 void arithmetic(int inHeight, int inRadius, float* pArea, float* pVolume)
