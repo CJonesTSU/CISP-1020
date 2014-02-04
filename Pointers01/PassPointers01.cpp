@@ -20,6 +20,8 @@ using namespace std;
 /************************************
 *     defines
 *************************************/
+#define PI 3.141592
+
 
 /************************************
 *      global variables
@@ -28,6 +30,8 @@ using namespace std;
 /************************************
 *       Function prototypes 
 *************************************/
+void arithmetic(int, int, float*, float*);
+
 
 int main()
 {
@@ -45,13 +49,27 @@ int main()
      
 
     // Get our input
-    cout << "Please enter the height of your cylinder: ";
-    inHeight << cin;
     cout << "Please enter the radius of your cylinder: ";
-    inRadius << cin;
+    cin >> inRadius;
+    cout << "Please enter the height of your cylinder: ";
+    cin >> inHeight;
+
+    // function call
+    arithmetic(inHeight, inRadius, pArea, pVolume); 
 
     // Generate out output
+    cout << endl << endl;
+    cout << "*** Using the pointers ***\n";
+    cout << "  area:\t\t" << *pArea << "\n";
+    cout << "  volume:\t" << *pVolume << "\n";    
+
 
      system("pause");
      return 0;
+}
+
+void arithmetic(int inHeight, int inRadius, float* pArea, float* pVolume)
+{
+    *pArea = (2 * PI * inRadius * inRadius) + (2 * PI * inRadius * inHeight);
+    *pVolume = PI * inRadius * inRadius *  inHeight;    
 }
