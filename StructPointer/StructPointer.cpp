@@ -45,8 +45,6 @@ struct starTrekPersonel     //Create a struct with the following data items:
 
 int main()
 {
-    /*1.	declare a StarTrekPersonel struct named stpSample
-     *2.	create (instantiate) the variable */
 
     /*********************************
     *    local variables
