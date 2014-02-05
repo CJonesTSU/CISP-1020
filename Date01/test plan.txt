@@ -1,0 +1,16 @@
+1.test constructor and display by
+     a.execute constructor
+     b.execute display
+2.test setters by
+     a.run the setters
+     b.run display (did the setters work)
+3.test getters by
+     a.run each getter in a print line and see if values are OK
+4.test calcLeapYear by
+     a.use setYear(int) for each of the following years
+     b.then run display
+     c.output should be (in display)
+          i.1900 – not a leap year
+          ii.2000 – is a leap year
+          iii.1999 – is not a leap year
+          iv.1996 – is a leap year
