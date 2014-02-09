@@ -38,13 +38,12 @@ class Date
         void setDay(int);
 
         //gettters
-        int getYear() const;
-        int getMonth() const; 
-        int getDay() const; 
+        int getYear();
+        int getMonth(); 
+        int getDay(); 
  
-        bool isLeapYear() const; 
-
-
+        bool calcLeapYear(); 
+        void display();
 };
 
 /****************************************
@@ -57,6 +56,38 @@ void Date::setYear(int y)
 
 void Date::setMonth(int m)
 {
+    month = m;
+}
+
+void Date::setDay(int d)
+{
+    day = d;
+}
+
+int Date::getYear()
+{
+    return year;
+}
+
+int Date::getMonth()
+{
+    return month;
+}
+
+int Date::getDay()
+{
+    return day;
+}
+
+bool Date::calcLeapYear() 
+{
+    return true;
+
+}
+void Date::display()
+{
+
+}
 
 /****************************************
 *          Function prototypes
@@ -79,7 +110,7 @@ int main()
 
 void testDate01()
 {
-    int testDate = new Date()i;
+    Date testDate;
 }     
      
     
