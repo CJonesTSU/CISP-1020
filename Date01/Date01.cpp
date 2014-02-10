@@ -20,7 +20,6 @@
 *     pre-processor
 ******************************************/
 using namespace std;
-#define VERBOSE true
 
 /****************************************
 *         Class definitions
@@ -94,9 +93,10 @@ bool Date::calcLeapYear()
     return isLeapYear;
 
 }
+
 void Date::display()
 {
-    cout << endl << endl;
+    cout << endl;
     cout << "Month is\t" << getMonth() << endl;
     cout << "day is\t\t" << getDay() << endl;
     cout << "year is \t" << getYear() << endl;
@@ -113,7 +113,7 @@ void Date::display()
 /****************************************
 *          Function prototypes
 ****************************************/
-void testDate01(bool verbosity);
+void testDate01();
 
 /*****************************************
 *   main() - the function that executes
@@ -123,17 +123,17 @@ int main()
     /*******************************
     *     local variables
     ******************************/
-    testDate01(VERBOSE);     
+    testDate01();     
    
     system("PAUSE");               // causes the program to pause
 	return 0;
 }  // end main
 
-void testDate01(bool verbosity)
+void testDate01()
 {
+    Date testDate;          // the date object we will use to test
     // test constructor
     cout << "testing contructor";
-    Date testDate;
     testDate.display();
 
     // test setters
