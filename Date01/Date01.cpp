@@ -20,6 +20,7 @@
 *     pre-processor
 ******************************************/
 using namespace std;
+#define VERBOSE true
 
 /****************************************
 *         Class definitions
@@ -81,18 +82,38 @@ int Date::getDay()
 
 bool Date::calcLeapYear() 
 {
-    return true;
+    bool isLeapYear = false;    //holds our bool for leap year
+    if ((year % 400) == 0)
+    {
+        isLeapYear = true;
+    }
+    if (((year % 4) == 0) && ((year % 100) != 0))
+    {
+        isLeapYear = true;
+    }
+    return isLeapYear;
 
 }
 void Date::display()
 {
-
+    cout << endl << endl;
+    cout << "Month is\t" << getMonth() << endl;
+    cout << "day is\t\t" << getDay() << endl;
+    cout << "year is \t" << getYear() << endl;
+    if (calcLeapYear())
+    {
+        cout << getYear() << " is a leap year." << endl;
+    }
+    else
+    {
+        cout << getYear() << " is not a leap year." << endl;
+    }
 }
 
 /****************************************
 *          Function prototypes
 ****************************************/
-void testDate01();
+void testDate01(bool verbosity);
 
 /*****************************************
 *   main() - the function that executes
@@ -102,15 +123,43 @@ int main()
     /*******************************
     *     local variables
     ******************************/
-    testDate01();     
+    testDate01(VERBOSE);     
    
     system("PAUSE");               // causes the program to pause
 	return 0;
 }  // end main
 
-void testDate01()
+void testDate01(bool verbosity)
 {
+    // test constructor
+    cout << "testing contructor";
     Date testDate;
+    testDate.display();
+
+    // test setters
+    cout << endl << endl << "Testing setters";
+    testDate.setYear(2014);
+    testDate.setMonth(02);
+    testDate.setDay(10);
+    testDate.display();
+
+    // test getters
+    cout << endl << endl << "Testing getters" << endl;
+    cout << "Testing getMonth(): " << testDate.getMonth() << endl;
+    cout << "Testing getDay(): " << testDate.getDay() << endl;
+    cout << "Testing getYear(): " << testDate.getYear() << endl;
+
+    // test calcLeapYear
+    cout << endl << endl << "Testing calcLeapYear():" << endl;
+    testDate.setYear(1900);
+    testDate.display();
+    testDate.setYear(2000);
+    testDate.display();
+    testDate.setYear(1999);
+    testDate.display();
+    testDate.setYear(1996);
+    testDate.display();
+
 }     
      
     
