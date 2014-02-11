@@ -19,4 +19,4 @@
     b. run display date should be 01/01/1900
 6. Test three int conttructor
     a. Create a date object for 02/10/2014
-    b. run display, we should see 01/10/2014
+    b. run display, we should see 02/10/2014
