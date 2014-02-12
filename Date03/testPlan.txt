@@ -34,3 +34,8 @@
     b. display (day of week should be Sunday)
     c. set date to 02/12/2013 
     d. display (day of week should be Wednesday)
+9. Test getMonthName
+    a. set month to 01
+    b. display (month name should be January)
+    c. set month to 12
+    d. display (should get December)
