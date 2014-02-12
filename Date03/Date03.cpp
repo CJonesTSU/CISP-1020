@@ -36,17 +36,20 @@ class Date
         Date(int,int,int);
 
         // setters
-        void setYear(int x);        {year = x;} 
-        void setMonth(int x);       {month =x;}
-        void setDay(int x);         {day = x;}
+        void setYear(int x)        {year = x;} 
+        void setMonth(int x)       {month =x;}
+        void setDay(int x)         {day = x;}
 
         //gettters
-        int getYear();              {return year;}
-        int getMonth();             {return month;}
-        int getDay();               {return day;}
+        int getYear()              {return year;}
+        int getMonth()             {return month;}
+        int getDay()               {return day;}
  
         bool calcLeapYear(); 
         void display();
+        int calcDayOfYear();
+        char* getDayOfWeek();
+        string getMonthName();
 };
 
 /****************************************
