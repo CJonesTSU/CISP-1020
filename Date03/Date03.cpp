@@ -115,7 +115,7 @@ int Date::calcDayOfYear()
 {
     int totalDays = 0;
 
-    totalDays += getDay();      // add the partial month
+    totalDays += getDay();      // add the partial month (handles 02/29 too)
     
     // add the days in months that have already occurred
     for(int x=0; x<getMonth()-1; x++)
@@ -126,7 +126,7 @@ int Date::calcDayOfYear()
     // Add one day if leap year and today is Feb 29th or later.
     if(calcLeapYear()==true)
     {
-        if((getMonth() > 2) || (getMonth() == 2 && getDay() == 29))
+        if((getMonth() > 2))
             {
                 totalDays++;
             }                
@@ -224,6 +224,26 @@ void testDate03()
     testDate.setMonth(1);
     testDate.setDay(1);
     testDate.display();
+
+    // set to 12/31/1900 (should give 365)
+    testDate.setYear(1900);
+    testDate.setMonth(12);
+    testDate.setDay(31);
+    testDate.display();
+
+    // set to 02/29/2000 (should give 60)
+    testDate.setYear(2000); 
+    testDate.setMonth(2);
+    testDate.setDay(29);
+    testDate.display();
+
+    // set to 12/31/2000 (should give 366)
+    testDate.setYear(2000); 
+    testDate.setMonth(12);
+    testDate.setDay(31);
+    testDate.display();
+
+
 }
   
 
