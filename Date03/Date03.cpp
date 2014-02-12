@@ -100,6 +100,7 @@ void Date::display()
     cout << "Month is\t" << getMonth() << endl;
     cout << "day is\t\t" << getDay() << endl;
     cout << "year is \t" << getYear() << endl;
+    cout << "day of year\t" << calcDayOfYear() << endl;
     if (calcLeapYear())
     {
         cout << getYear() << " is a leap year." << endl;
@@ -110,12 +111,32 @@ void Date::display()
     }
 }
 
+int Date::calcDayOfYear()
+{
+    int totalDays = 0;
+
+    totalDays += getDay();      // add the partial month
+    
+    // add the days in months that have already occurred
+    for(x=0; x<getMonth()-1; x++)
+    {
+        totalDays += daysInMonth[x];
+    }
+    
+    // Add one day if leap year and today is Feb 29th or later.
+    if(calcLeapYear()==true)
+    {
+        if((getMonth > 2) || (getMonth() == 2 && getDay() == 29))
+            {
+                totalDays++;
+            }                
+}
 /****************************************
 *          Function prototypes
 ****************************************/
 void testDate01();
 void testDate02();
-
+void testDate03();
 /*****************************************
 *   main() - the function that executes
 *****************************************/
@@ -126,6 +147,7 @@ int main()
     ******************************/
     testDate01();     
     testDate02();
+    testDate03();
  
     system("PAUSE");               // causes the program to pause
 	return 0;
@@ -185,6 +207,22 @@ void testDate02()
     testThreeIntCon.display();
 }    
 
+
+void testDate01()
+{
+    Date testDate;      // Out testing date object 
+
+    // Banner head 
+    cout << endl << "******************************" << endl;
+    cout << "***        testDate03      ***" << endl;
+    cout << "******************************" << endl;
+
+    // set 1/1/1900 basic test
+    testDate.setYear()=1900;
+    testDate.setMonth()=1;
+    testDate.setDay()=1;
+    testDate.display();
+  
 
 
 
