@@ -1,4 +1,4 @@
-/**************************************************
+/**************************************************i
 * 
 *      program name:       Date03 
 *      Author:             Chris Jones 
@@ -14,6 +14,8 @@
 ******************************************/
 #include <iostream>             // needed for I/O
 #include <cstdlib>              // needed for system call
+#include <string>               // string functions
+#include <string.h>             // c string functions
 
 /******************************************
 *     pre-processor
@@ -30,8 +32,8 @@ class Date
         int month;      // Contains the month
         int day;        // Contains the day
         int daysInMonth[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
-                        // holds the number of days in each month
-        char dayOfWeek[7][10] = {"Sunday",
+                         // holds the number of days in each month
+        char* daysOfWeek[7] = {"Sunday",
                                 "Monday",
                                 "Tuesday",
                                 "Wednesday",
@@ -109,6 +111,7 @@ void Date::display()
     {
         cout << getYear() << " is not a leap year." << endl;
     }
+    cout << "Day-of-week\t" << getDayOfWeek() << endl; 
 }
 
 int Date::calcDayOfYear()
@@ -132,6 +135,32 @@ int Date::calcDayOfYear()
             }                
     }
     return totalDays;
+}
+
+char* Date::getDayOfWeek()
+{
+    // only works for dates after 1/1/1900
+    int totalDays = 0;
+    Date tmpDate;
+    char* tmpDOfW; 
+    totalDays = calcDayOfYear();
+
+    tmpDate.setMonth(12);
+    tmpDate.setDay(31);
+    
+    if (getYear() >= 1900)
+    {
+        for(int x=1900;x<getYear();x++)
+        {
+            // loop through years since 1900 adding total days
+            tmpDate.setYear(x);
+            totalDays += tmpDate.calcDayOfYear();
+        }
+        // totalDays should now have days since 1/1/1900
+        // calc that value mod 7 and grab appropriate string
+        tmpDOfW = &daysOfWeek[totalDays%7][0];
+    }
+    return tmpDOfW;
 }
 /****************************************
 *          Function prototypes
@@ -242,6 +271,19 @@ void testDate03()
     testDate.setMonth(12);
     testDate.setDay(31);
     testDate.display();
+
+    // set date to 01/01/1900 (day of week should be Sunday)
+    testDate.setYear(1900);
+    testDate.setMonth(1);
+    testDate.setDay(1);
+    testDate.display();
+
+    // set date to 02/12/2014 (day of week should be Wednesday)
+    testDate.setYear(2014);
+    testDate.setMonth(2);
+    testDate.setDay(12);
+    testDate.display();
+
 
 
 }

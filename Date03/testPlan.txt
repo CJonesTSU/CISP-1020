@@ -29,3 +29,8 @@
     f. display (num days should be 60)
     g. set date to 12/31/2000
     h. display (num should be 366)
+8. Test getDayOfWeek
+    a. set date to 01/01/1900
+    b. display (day of week should be Sunday)
+    c. set date to 02/12/2013 
+    d. display (day of week should be Wednesday)
