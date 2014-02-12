@@ -20,3 +20,12 @@
 6. Test three int conttructor
     a. Create a date object for 02/10/2014
     b. run display, we should see 02/10/2014
+7. Test the calcDaysOfYear function
+    a. set date to 1/1/1900 
+    b. display (number of days should be 1)
+    c. set date 12/31/1900 (not a leap year)
+    d. display (number of days should be 365)
+    e. set date to 2/29/2000 (is a leap year) 
+    f. display (num days should be 60)
+    g. set date to 12/31/2000
+    h. display (num should be 366)

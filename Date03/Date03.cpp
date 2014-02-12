@@ -1,11 +1,11 @@
 /**************************************************
 * 
-*      program name:       Date02 
+*      program name:       Date03 
 *      Author:             Chris Jones 
-*      date due:           2014-02-10 
-*      remarks:            Second iteration of the Date Class 
-*                          Adding a couple of constructors 
-*                          
+*      date due:           2014-02-12 
+*      remarks:            Third iteration of the Date Class 
+*                          added day of year, day of week and
+*                          month name funcitons
 *
 ***************************************************/
 
@@ -118,7 +118,7 @@ int Date::calcDayOfYear()
     totalDays += getDay();      // add the partial month
     
     // add the days in months that have already occurred
-    for(x=0; x<getMonth()-1; x++)
+    for(int x=0; x<getMonth()-1; x++)
     {
         totalDays += daysInMonth[x];
     }
@@ -126,10 +126,11 @@ int Date::calcDayOfYear()
     // Add one day if leap year and today is Feb 29th or later.
     if(calcLeapYear()==true)
     {
-        if((getMonth > 2) || (getMonth() == 2 && getDay() == 29))
+        if((getMonth() > 2) || (getMonth() == 2 && getDay() == 29))
             {
                 totalDays++;
             }                
+    }
 }
 /****************************************
 *          Function prototypes
@@ -169,7 +170,7 @@ void testDate01()
     // test setters
     cout << endl << "Testing setters" << endl;
     testDate.setYear(2014);
-    testDate.setMonth(02);
+    testDate.setMonth(2);
     testDate.setDay(10);
     testDate.display();
 
@@ -195,7 +196,7 @@ void testDate02()
 {
     
     Date testDefaultCon;                // test date with default constructor
-    Date testThreeIntCon(02,10,2014);   // test date with three int constructor
+    Date testThreeIntCon(2,10,2014);   // test date with three int constructor
 
     cout << endl << "******************************" << endl;
     cout << "***        testDate02      ***" << endl;
@@ -208,7 +209,7 @@ void testDate02()
 }    
 
 
-void testDate01()
+void testDate03()
 {
     Date testDate;      // Out testing date object 
 
@@ -218,10 +219,11 @@ void testDate01()
     cout << "******************************" << endl;
 
     // set 1/1/1900 basic test
-    testDate.setYear()=1900;
-    testDate.setMonth()=1;
-    testDate.setDay()=1;
+    testDate.setYear(1900);
+    testDate.setMonth(1);
+    testDate.setDay(1);
     testDate.display();
+}
   
 
 
