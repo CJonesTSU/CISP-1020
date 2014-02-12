@@ -1,4 +1,4 @@
-CFLAGS=-Wall -g
+CFLAGS=-Wall -g -std=C++11
 
 clean:
 	rm -f Date03 

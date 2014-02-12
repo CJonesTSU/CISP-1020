@@ -29,6 +29,15 @@ class Date
         int year;       // Contains the year
         int month;      // Contains the month
         int day;        // Contains the day
+        int daysInMonth[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
+                        // holds the number of days in each month
+        char dayOfWeek[7][10] = {"Sunday",
+                                "Monday",
+                                "Tuesday",
+                                "Wednesday",
+                                "Thursday",
+                                "Friday",
+                                "Saturday"};
  
     public:
         //Constructors
