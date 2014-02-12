@@ -131,6 +131,7 @@ int Date::calcDayOfYear()
                 totalDays++;
             }                
     }
+    return totalDays;
 }
 /****************************************
 *          Function prototypes
