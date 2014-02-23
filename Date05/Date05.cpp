@@ -3,9 +3,9 @@
 *      program name:       Date03 
 *      Author:             Chris Jones 
 *      date due:           2014-02-12 
-*      remarks:            Third iteration of the Date Class 
-*                          added day of year, day of week and
-*                          month name funcitons
+*      remarks:            Fourth iteration of the Date Class 
+*                          Converting to pointers and mem allocation
+*                          for several data elements 
 *
 ***************************************************/
 
@@ -16,6 +16,7 @@
 #include <cstdlib>              // needed for system call
 #include <string>               // string functions
 #include <string.h>             // c string functions
+#include <ctime>                // time functions
 
 /******************************************
 *     pre-processor
@@ -28,9 +29,9 @@ using namespace std;
 class Date
 {
     private:
-        int year;       // Contains the year
-        int month;      // Contains the month
-        int day;        // Contains the day
+        int *year;       // Contains the year
+        int *month;      // Contains the month
+        int *day;        // Contains the day
         int daysInMonth[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
                          // holds the number of days in each month
         char* daysOfWeek[7] = { "Sunday",
@@ -54,19 +55,21 @@ class Date
                                 "December"};
  
     public:
-        //Constructors
-        Date();
-        Date(int,int,int);
+        //Constructors/Destructor
+        Date();                 // returns current systme date
+        Date(int,int,int);      // pass in year month and date
+        Date(int, int);         // pass in day of year and year
+        ~Date();
 
         // setters
-        void setYear(int x)        {year = x;} 
-        void setMonth(int x)       {month =x;}
-        void setDay(int x)         {day = x;}
+        void setYear(int x)        {*year = x;} 
+        void setMonth(int x)       {*month =x;}
+        void setDay(int x)         {*day = x;}
 
         //gettters
-        int getYear()              {return year;}
-        int getMonth()             {return month;}
-        int getDay()               {return day;}
+        int getYear()              {return *year;}
+        int getMonth()             {return *month;}
+        int getDay()               {return *day;}
  
         bool calcLeapYear(); 
         void display();
@@ -81,27 +84,74 @@ class Date
 // Constructors
 Date::Date()
 {
-    setYear(1900);
-    setMonth(1);
-    setDay(1);
+    time_t t = time(0);
+    struct tm * now = localtime(&t);
+    
+    year = new int; 
+    month = new int;
+    day = new int;
+    
+    setYear(now->tm_year + 1900);
+    setMonth(now->tm_mon +1);
+    setDay(now->tm_mday);
 }
 
-Date::Date(int month, int day, int year)
+Date::Date(int m, int d, int y)
 {
-    setYear(year);
-    setMonth(month);
-    setDay(day);
+    year = new int;
+    month = new int;
+    day = new int;
+ 
+    setYear(y);
+    setMonth(m);
+    setDay(d);
+}
+
+Date::Date(int doy, int yr)
+{
+    year = new int;
+    month = new int;
+    day = new int;
+    int tmpDays;
+ 
+    setYear(yr);
+    for(int x=0;x<12;x++)
+    {
+        tmpDays = daysInMonth[x];
+        if ((x==1) && calcLeapYear()==true)
+        {
+            tmpDays++;
+        }
+        if((doy - tmpDays) > 0 )
+        {   
+            doy = doy - tmpDays;
+        }
+        else
+        {
+            setMonth(x+1);
+            break;
+        }
+        
+    }
+    setDay(doy);
+
+}
+Date::~Date()
+{
+delete year;
+delete month;
+delete day;
 }
 
 // Actual member functions
 bool Date::calcLeapYear() 
 {
     bool isLeapYear = false;    //holds our bool for leap year
-    if ((year % 400) == 0)
+    if ((getYear() % 400) == 0)
     {
         isLeapYear = true;
     }
-    if (((year % 4) == 0) && ((year % 100) != 0))
+    if (((getYear() % 4) == 0) && ((getYear() % 100) != 0))
     {
         isLeapYear = true;
     }
@@ -187,6 +237,7 @@ string Date::getMonthName()
 void testDate01();
 void testDate02();
 void testDate03();
+void testDate05();
 /*****************************************
 *   main() - the function that executes
 *****************************************/
@@ -198,6 +249,7 @@ int main()
     testDate01();     
     testDate02();
     testDate03();
+    testDate05();
  
     system("PAUSE");               // causes the program to pause
 	return 0;
@@ -268,7 +320,7 @@ void testDate03()
     cout << "******************************" << endl;
 
     
-    cout << endl << "**** testing dayOfYear ****" << endl;
+    cout << "**** testing dayOfYear ****" << endl;
     // set 1/1/1900 basic test
     testDate.setYear(1900);
     testDate.setMonth(1);
@@ -294,7 +346,7 @@ void testDate03()
     testDate.display();
 
 
-    cout << endl << "**** testing day of week ****" << endl;
+    cout << "**** testing day of week ****" << endl;
     // set date to 01/01/1900 (day of week should be Sunday)
     testDate.setYear(1900);
     testDate.setMonth(1);
@@ -307,7 +359,7 @@ void testDate03()
     testDate.setDay(12);
     testDate.display();
 
-    cout << endl << "**** testing month names ****" << endl;
+    cout << "**** testing month names ****" << endl;
     // should give us January
     testDate.setMonth(1);
     testDate.display();
@@ -316,6 +368,31 @@ void testDate03()
     testDate.setMonth(12);
     testDate.display();
 
+}
+
+void testDate05()
+{
+    
+    Date testDefaultCon;                // test date with default constructor
+    Date testDOYYearCon(1,1900);     // test date with DOY/Yearconstructor
+    Date testDOYYearCon2(31,1900);     // test date with DOY/Yearconstructor
+    Date testDOYYearCon3(32,1900);     // test date with DOY/Yearconstructor
+    Date testDOYYearCon4(366,2000);     // test date with DOY/Yearconstructor
+
+
+
+
+    cout << endl << "******************************" << endl;
+    cout << "***        testDate05      ***" << endl;
+    cout << "******************************" << endl;
+    cout << "Testing Default Constructor" << endl;
+    testDefaultCon.display();
+
+    cout << endl << "Testing the DOY/Year constructor" << endl;
+    testDOYYearCon.display();           // should give 01/01/1900
+    testDOYYearCon2.display();          // should give 01/31/1900
+    testDOYYearCon3.display();          // should give 02/01/1900
+    testDOYYearCon4.display();          // should give 12/31/2000
 }
   
 

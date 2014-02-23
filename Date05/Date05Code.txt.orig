@@ -1,0 +1,139 @@
+<<<<<<< HEAD
+
+
+
+//this is the default constructor
+Date::Date()
+{
+      struct tm *ptr;     
+      time_t lt;
+      lt = time('\0');
+      ptr = localtime (&lt);
+      
+      setMonth(ptr->tm_mon+1);
+      setDay(ptr->tm_mday);
+      setYear(ptr->tm_year+1900);
+}//end default constructor
+
+
+// constructor uses Day-Of-Year
+Date::Date(int doy, int year)
+{              
+    int julianMonth[13] = {0,31,59,90,120,151,181,212,243,273,304,334,365};
+    int x;
+    
+    setYear(year);
+    
+    for(x=1; x<13; x++)
+    {
+        // increment by 1 if a leap year and Feb ~ Dec
+        if(calcLeapYear() && x>1)
+        {
+            julianMonth[x]++;
+        }
+        
+        if(doy <= julianMonth[x])
+        {
+            setMonth(x);
+            setDay(doy - julianMonth[x-1]);
+            break;
+        }
+    } 
+}   
+
+
+  
+// testing function
+void testDate05()  
+{
+     Date d01(1, 2000);
+     d01.display();
+     Date d02(1, 2001);
+     d02.display();
+     Date d03(59, 2000);
+     d03.display();
+     Date d04(59, 2001);
+     d04.display();    
+     Date d05(60, 2000);
+     d05.display();
+     Date d06(60, 2001);
+     d06.display();     
+     Date d07(61, 2000);
+     d07.display();
+     Date d08(61, 2001);
+     d08.display();
+     Date d09(366, 2000);
+     d09.display();
+     Date d10(365, 2001);
+     d10.display();    
+} 
+=======
+
+
+
+//this is the default constructor
+Date::Date()
+{
+      struct tm *ptr;     
+      time_t lt;
+      lt = time('\0');
+      ptr = localtime (&lt);
+      
+      setMonth(ptr->tm_mon+1);
+      setDay(ptr->tm_mday);
+      setYear(ptr->tm_year+1900);
+}//end default constructor
+
+
+// constructor uses Day-Of-Year
+Date::Date(int doy, int year)
+{              
+    int julianMonth[13] = {0,31,59,90,120,151,181,212,243,273,304,334,365};
+    int x;
+    
+    setYear(year);
+    
+    for(x=1; x<13; x++)
+    {
+        // increment by 1 if a leap year and Feb ~ Dec
+        if(calcLeapYear() && x>1)
+        {
+            julianMonth[x]++;
+        }
+        
+        if(doy <= julianMonth[x])
+        {
+            setMonth(x);
+            setDay(doy - julianMonth[x-1]);
+            break;
+        }
+    } 
+}   
+
+
+  
+// testing function
+void testDate05()  
+{
+     Date d01(1, 2000);
+     d01.display();
+     Date d02(1, 2001);
+     d02.display();
+     Date d03(59, 2000);
+     d03.display();
+     Date d04(59, 2001);
+     d04.display();    
+     Date d05(60, 2000);
+     d05.display();
+     Date d06(60, 2001);
+     d06.display();     
+     Date d07(61, 2000);
+     d07.display();
+     Date d08(61, 2001);
+     d08.display();
+     Date d09(366, 2000);
+     d09.display();
+     Date d10(365, 2001);
+     d10.display();    
+} 
+>>>>>>> 0d7624bc4e90da1bb2e2b6fb31b67f9eebdb6067

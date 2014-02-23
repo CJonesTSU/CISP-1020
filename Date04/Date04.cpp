@@ -284,7 +284,7 @@ void testDate03()
     cout << "******************************" << endl;
 
     
-    cout << "**** testing dayOfYear ****" << endl;
+    cout << endl << "**** testing dayOfYear ****" << endl;
     // set 1/1/1900 basic test
     testDate.setYear(1900);
     testDate.setMonth(1);
@@ -310,7 +310,7 @@ void testDate03()
     testDate.display();
 
 
-    cout << "**** testing day of week ****" << endl;
+    cout << endl << "**** testing day of week ****" << endl;
     // set date to 01/01/1900 (day of week should be Sunday)
     testDate.setYear(1900);
     testDate.setMonth(1);
@@ -323,7 +323,7 @@ void testDate03()
     testDate.setDay(12);
     testDate.display();
 
-    cout << "**** testing month names ****" << endl;
+    cout << endl << "**** testing month names ****" << endl;
     // should give us January
     testDate.setMonth(1);
     testDate.display();
