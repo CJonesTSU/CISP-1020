@@ -1,0 +1,52 @@
+1.test constructor and display by
+     a.execute constructor
+     b.execute display
+2.test setters by
+     a.run the setters
+     b.run display (did the setters work)
+3.test getters by
+     a.run each getter in a print line and see if values are OK
+4.test calcLeapYear by
+     a.use setYear(int) for each of the following years
+     b.then run display
+     c.output should be (in display)
+          i.1900 – not a leap year
+          ii.2000 – is a leap year
+          iii.1999 – is not a leap year
+          iv.1996 – is a leap year
+5. Test default constructor
+    a. Create a date object with no parameters
+    b. run display date should be 01/01/1900
+6. Test three int conttructor
+    a. Create a date object for 02/10/2014
+    b. run display, we should see 02/10/2014
+7. Test the calcDaysOfYear function
+    a. set date to 1/1/1900 
+    b. display (number of days should be 1)
+    c. set date 12/31/1900 (not a leap year)
+    d. display (number of days should be 365)
+    e. set date to 2/29/2000 (is a leap year) 
+    f. display (num days should be 60)
+    g. set date to 12/31/2000
+    h. display (num should be 366)
+8. Test getDayOfWeek
+    a. set date to 01/01/1900
+    b. display (day of week should be Sunday)
+    c. set date to 02/12/2013 
+    d. display (day of week should be Wednesday)
+9. Test getMonthName
+    a. set month to 01
+    b. display (month name should be January)
+    c. set month to 12
+    d. display (should get December)
+10. Change over to pointers
+    a. no tests.  If it compiles and all other test pass it is good.
+    b. This ignores memory leaks, but it is only three ints, pretty sure I go them all deleted.
+11. Test new default constructor
+    a. create new date object
+    b. display, should equal todays date.
+12. Test new doy/year constructor
+    a. Test with 1, 1900  (should be 1/1/1900)
+    b Test with 31,1900 (shouild be 1/31/1900)
+    c. test with 31,1900 (should be 2/1/1900)
+    d. test with 366,2000 (should be 12/31/2000)
