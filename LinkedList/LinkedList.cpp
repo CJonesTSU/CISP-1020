@@ -110,8 +110,8 @@ int main()
 	
 	loadLinkedList(ppStart);
    	traverse(&start);
-   	delNode(&start,5);
-   	delNode(&start,6);
+   	//delNode(&start,5);
+   	//delNode(&start,6);
    
     system("PAUSE");               // causes the program to pause
 	return 0;
@@ -134,11 +134,11 @@ void addNode(Node** start, int addNum)
 void traverse(Node** start)
 {
 	Node* current = *start;
-	//current->display();
+	current->display();
 	while(current->getNext()!=NULL)
 	{
 		current = current->getNext();
-		//current->display();
+		current->display();
 	}
 	
 }

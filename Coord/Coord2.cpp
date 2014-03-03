@@ -12,7 +12,6 @@
 *     library includes 
 ******************************************/
 #include <iostream>                // needed for I/O
-#include <cstdlib>              // needed for system call
 
 /******************************************
 *     pre-processor
@@ -77,11 +76,10 @@ Coord :: Coord(int x, int y, int z)
 // Copy constructor
 Coord::Coord(const Coord &cx)
 {
-	cout << "in copy constructor\n";
 	xCoord = new int;
 	setXCoord(cx.getXCoord());
 	
-	yCoord = new int(cx.getYCoord());
+	yCoord = new int(cx.getYCoord);
 	zCoord = new int;
 	setZCoord(cx.getZCoord());
 	
@@ -111,8 +109,6 @@ void Coord :: display()
 *          function prototypes
 ****************************************/
 void testDestructor();
-void testTestPass2Func();
-void testPass2Func(Coord c12);
 
 /*****************************************
 *   main() - the function that executes
@@ -129,10 +125,7 @@ int main()
     c1.display();
     c2.display();
 
-    testDestructor();  
-	cout << "after testDestructor()\n\n\n";
-	
-	testTestPass2Func();  
+    testDestructor();    
 
     system("PAUSE");               // causes the program to pause
 	return 0;
@@ -142,17 +135,8 @@ void testDestructor()
      cout << "in test destructor\n";
      Coord xx(4, 4, 4);
 }
-void testTestPass2Func()
-{
-	cout << "in testTestPass2Func(Coord c2)\n";
-	Coord c1;
-	testPass2Func(c1);
-}
-void testPass2Func(Coord c12)
-{
-	cout << "in testPass2Func(Coord c2)\n";
-	
-}
+
+     
      
     
 
