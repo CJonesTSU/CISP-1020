@@ -1,0 +1,23 @@
+Given the existing Linked List implementation
+Add a funciton to add a node to the list.
+NOTE: assumes at least one node already in list
+1. Delete inital node 
+    a. show list
+    b. show node to be removed
+    c. remove
+    d. show list
+2. Delete existing node mid-list
+    a. show list
+    b. show node to be removed
+    c. remove
+    d. show list
+3. Delete final node
+    a. show list
+    b. show node to be removed
+    c. remove
+    d. show list
+4. attempt to delete non-existant node
+    a. show list
+    b. show node to be removed
+    c. remove
+    d. show list
