@@ -1,0 +1,24 @@
+Given the existing Linked List implementation
+Add a funciton to add a node to the list.
+NOTE: assumes at least one node already in list
+1. Test for a collision with the first node (error if so)
+    a. try to insert existing value
+    b. throw error
+    c. output list to show no insertion
+2. Insert node at beginning of list
+    a. insert a value at beginning of list
+    b. output list to show insertion
+3. Insert node in middle of list
+    a. insert node in middle of list
+    b. output list to show insertion
+4. Test for collision in middle of list
+    a. try to insert existing value in mid list
+    b. throw error
+    c. output list to confirm no insertion made
+5. Test for collision at end of list
+    a. try to insert final value in list
+    b. throw error
+    c. output list to show that no insertion occurred
+6. Insert at end of list
+    a. insert value greater than largest value in list
+    b. output list to show insertion
