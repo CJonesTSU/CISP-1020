@@ -1,10 +1,10 @@
 /**************************************************
 * 
-*      program name:    LL-Insert
+*      program name:    LL-Delete
 *      Author:          Chris Jones
 *      date due:        2014-03-05                
 *      remarks:         Second Linked List Program.
-*                       Add a node  
+*                       delete a node  
 *
 ***************************************************/
 
