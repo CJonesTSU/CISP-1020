@@ -1,11 +1,11 @@
 /**************************************************i
 * 
-*      program name:       Date03 
+*      program name:       Date07
 *      Author:             Chris Jones 
-*      date due:           2014-02-12 
-*      remarks:            Fourth iteration of the Date Class 
-*                          Converting to pointers and mem allocation
-*                          for several data elements 
+*      date due:           2014-03-24 
+*      remarks:            Seventh iteration of the Date Class 
+*                          overriding "<",">" and "=" for the 
+*                          date class
 *
 ***************************************************/
 
@@ -63,6 +63,11 @@ class Date
 
         // Destructor
         ~Date();
+        
+        // overloaded operators
+		bool operator>(const Date& rhs);
+		bool operator<(const Date& rhs);
+		bool operator==(const Date& rhs);
 
         // setters
         void setYear(int x)        {*year = x;} 
@@ -156,7 +161,42 @@ delete year;
 delete month;
 delete day;
 }
+// Overloaded operators
+bool Date :: operator>(const Date& rhs)
+{
+    bool isTrue = false;
+    if(getYear() > rhs.getYear())
+    {
+        isTrue = true;
+    }
+    else if(getYear() < rhs.getYear())
+    {
+        isTrue = false;
+    } 
+    else if(getMonth() > rhs.getMonth())
+    {
+        isTrue = true;
+    }
+    else if(getMonth() < rhs.getMonth())
+    {
+        isTrue = false;
+    } 
+    else if(getDay() > rhs.getDay())
+    {
+        isTrue = true;
+    }
+    else  // this catches both less than days and equal dates
+    {
+        isTrue = false;
+    } 
+}
 
+bool Date :: operator<(const Date& rhs)
+{
+}
+bool Date :: operator==(const Date& rhs)
+{
+}
 // Actual member functions
 bool Date::calcLeapYear() 
 {
@@ -266,7 +306,8 @@ int main()
     //testDate02();
     //testDate03();
     //testDate05();
-    testDate06();
+    //testDate06();
+    testDate07();
  
     system("PAUSE");               // causes the program to pause
 	return 0;
@@ -418,20 +459,36 @@ void testDate06()
     cout << "******************************" << endl;
     cout << "Testing Copy Constructor" << endl;
     cout << "Assigning existing date as value for new date" << endl;
-    Date d1(1,2,1944);                  // create a date with a date in it
+    Date date1(1,2,1944);                  // create a date with a date in it
     cout << "First date is:"<< endl;
-    d1.display();
-    Date d2 = d1;                            // no values should be today's info
+    date1.display();
+    Date date2 = date1;                            // no values should be today's info
     cout << "New date is:"<< endl;
-    d2.display();
+    date2.display();
     cout << endl << endl << "Passing Date one to a function" << endl;
     cout << "values before are:" << endl;
-    d1.display();
+    date1.display();
     sendDateToFunction(d1);
     cout << "Back from function, original date's values are: " << endl;
-    d1.display();
+    date1.display();
     
 
+}
+void testDate07()
+{
+    Date testDate(7,4,1976);     // The date we will test against
+    Date equalDate(7,4,1976);    // An equivalent date
+    Date dayBefore(7,3,1976);    // The day before the test date
+    Date dayAfter(7,5,1976);     // The day after the test date
+    Date monthBefore(6,4,1976);    // The day before the test date
+    Date monthAfter(8,4,1976);     // The day after the test date
+    Date yearBefore(7,4,1975);    // The day before the test date
+    Date yearAfter(7,4,1977);     // The day after the test date
+    
+    cout << endl << "******************************" << endl;
+    cout << "***        testDate07      ***" << endl;
+    cout << "******************************" << endl;
+    cout << "Testing overridden >" << endl;   
 }
 
 void sendDateToFunction(Date theDate)
