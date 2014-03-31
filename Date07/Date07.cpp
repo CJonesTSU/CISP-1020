@@ -47,8 +47,8 @@ class Date
         ~Date();
 
         // overloaded operators
-		const bool operator>(const Date& rhs);
-		const bool operator<(const Date& rhs);
+		bool operator>(const Date& rhs);
+		bool operator<(const Date& rhs);
 		bool operator==(const Date& rhs);
 
         // setters
@@ -155,7 +155,7 @@ delete month;
 delete day;
 }
 // Overloaded operators
-const bool Date :: operator>(const Date& rhs)
+bool Date :: operator>(const Date& rhs)
 {
     bool isTrue = false;        // Just our boolean for our return value
     if(getYear() > rhs.getYear())
@@ -173,7 +173,7 @@ const bool Date :: operator>(const Date& rhs)
     return isTrue;
 }
 
-const bool Date :: operator<(const Date& rhs)
+bool Date :: operator<(const Date& rhs)
 {
 
     bool isTrue = false;        // Just our boolean for our return value
