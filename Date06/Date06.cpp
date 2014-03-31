@@ -32,27 +32,9 @@ class Date
         int *year;       // Contains the year
         int *month;      // Contains the month
         int *day;        // Contains the day
-        int daysInMonth[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
-                         // holds the number of days in each month
-        char* daysOfWeek[7] = { "Sunday",
-                                "Monday",
-                                "Tuesday",
-                                "Wednesday",
-                                "Thursday",
-                                "Friday",
-                                "Saturday"};
-        string monthNames[12]={ "January",
-                                "February",
-                                "March",
-                                "April",
-                                "May",
-                                "June",
-                                "July",
-                                "August",
-                                "September",
-                                "October",
-                                "November",
-                                "December"};
+        static const int daysInMonth[12];   // holds the number of days in each month
+        static const char* daysOfWeek[7];   // holds day of week names
+        static const string monthNames[12]; // holds month names
  
     public:
         //Constructors/Destructor
@@ -69,10 +51,10 @@ class Date
         void setMonth(int x)       {*month =x;}
         void setDay(int x)         {*day = x;}
 
-        //gettters
-        int getYear() const            {return *year;}
-        int getMonth() const            {return *month;}
-        int getDay() const              {return *day;}
+        //getters
+        int getYear() const         {return *year;}
+        int getMonth() const        {return *month;}
+        int getDay() const          {return *day;}
  
         bool calcLeapYear(); 
         void display();
@@ -80,6 +62,31 @@ class Date
         char* getDayOfWeek();
         string getMonthName();
 };
+/****************************************
+*         Static Variables
+*****************************************/
+const int Date :: daysInMonth[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
+                         // holds the number of days in each month
+const char* Date :: daysOfWeek[7] = { "Sunday",
+                                "Monday",
+                                "Tuesday",
+                                "Wednesday",
+                                "Thursday",
+                                "Friday",
+                                "Saturday"};
+const string Date :: monthNames[12]={ "January",
+                                "February",
+                                "March",
+                                "April",
+                                "May",
+                                "June",
+                                "July",
+                                "August",
+                                "September",
+                                "October",
+                                "November",
+                                "December"};
+ 
 
 /****************************************
 *         Member functions
@@ -164,7 +171,8 @@ bool Date::calcLeapYear()
     if ((getYear() % 400) == 0)
     {
         isLeapYear = true;
-    }
+    }    
+
     if (((getYear() % 4) == 0) && ((getYear() % 100) != 0))
     {
         isLeapYear = true;
@@ -235,7 +243,7 @@ char* Date::getDayOfWeek()
         }
         // totalDays should now have days since 1/1/1900
         // calc that value mod 7 and grab appropriate string
-        tmpDOfW = &daysOfWeek[totalDays%7][0];
+        tmpDOfW = (char*)&daysOfWeek[totalDays%7][0];
     }
     return tmpDOfW;
 }
