@@ -50,6 +50,7 @@ class Date
 		bool operator>(const Date& rhs);
 		bool operator<(const Date& rhs);
 		bool operator==(const Date& rhs);
+        void operator=(const Date& rhs);
 
         // setters
         void setYear(int x)        {*year = x;}
@@ -155,6 +156,13 @@ delete month;
 delete day;
 }
 // Overloaded operators
+void Date :: operator=(const Date& rhs)
+{
+    setDay(rhs.getDay());
+    setMonth(rhs.getMonth());
+    setYear(rhs.getYear());
+}
+
 bool Date :: operator>(const Date& rhs)
 {
     bool isTrue = false;        // Just our boolean for our return value
@@ -567,6 +575,10 @@ void testDate07()
     {
         cout << "failed for test == equalDate" << endl;
     }
+    cout << endl << endl << "Testing overridden =" << endl;
+    testDate.display();
+    testDate = dayBefore;
+    testDate.display();
 }
 
 void sendDateToFunction(Date theDate)
