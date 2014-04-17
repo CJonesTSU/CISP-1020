@@ -1,10 +1,11 @@
 /**************************************************i
 * 
-*      program name:       Date06 
+*      program name:       Date07
 *      Author:             Chris Jones 
-*      date due:           2014-02-12 
-*      remarks:            Sixth iteration of the Date Class 
-*                          Copy constructor added
+*      date due:           2014-03-26 
+*      remarks:            Seventh iteration of the Date Class 
+*                          overriding "<",">" and "=" for the 
+*                          date class
 *
 ***************************************************/
 
@@ -31,16 +32,51 @@ class Date
         int *year;       // Contains the year
         int *month;      // Contains the month
         int *day;        // Contains the day
-        int daysInMonth[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
-                         // holds the number of days in each month
-        char* daysOfWeek[7] = { "Sunday",
-                                "Monday",
-                                "Tuesday",
-                                "Wednesday",
-                                "Thursday",
-                                "Friday",
-                                "Saturday"};
-        string monthNames[12]={ "January",
+        static const int daysInMonth[12];     // holds the number of days in each month
+        static const char* daysOfWeek[7];
+        static const string monthNames[12];
+ 
+    public:
+        //Constructors/Destructor
+        Date();                 // returns current systme date
+        Date(int,int,int);      // pass in year month and date
+        Date(int, int);         // pass in day of year and year
+        Date(const Date &d);    // copy constructor
+
+        // Destructor
+        ~Date();
+        
+        // overloaded operators
+		bool operator>(const Date& rhs);
+		bool operator<(const Date& rhs);
+		bool operator==(const Date& rhs);
+		//void operator=( Date& rhs);
+
+        // setters
+        void setYear(int x)        {*year = x;} 
+        void setMonth(int x)       {*month =x;}
+        void setDay(int x)         {*day = x;}
+
+        //gettters
+        int getYear() const        {return *year;}
+        int getMonth() const       {return *month;}
+        int getDay() const         {return *day;}
+ 
+        bool calcLeapYear() const; 
+        void display();
+        int calcDayOfYear() const;
+        char* getDayOfWeek();
+        string getMonthName();
+        
+};
+
+/****************************************
+*         Member functions
+****************************************/
+// static variables
+const int Date::daysInMonth[12]= {31,28,31,30,31,30,31,31,30,31,30,31};
+const char* Date::daysOfWeek[7] = { "Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+const string Date::monthNames[12] ={ "January",
                                 "February",
                                 "March",
                                 "April",
@@ -52,37 +88,8 @@ class Date
                                 "October",
                                 "November",
                                 "December"};
- 
-    public:
-        //Constructors/Destructor
-        Date();                 // returns current systme date
-        Date(int,int,int);      // pass in year month and date
-        Date(int, int);         // pass in day of year and year
-        Date(const Date &d);    // copy constructor
 
-        // Destructor
-        ~Date();
 
-        // setters
-        void setYear(int x)        {*year = x;} 
-        void setMonth(int x)       {*month =x;}
-        void setDay(int x)         {*day = x;}
-
-        //getters
-        int getYear() const            {return *year;}
-        int getMonth() const            {return *month;}
-        int getDay() const              {return *day;}
- 
-        bool calcLeapYear(); 
-        void display();
-        int calcDayOfYear();
-        char* getDayOfWeek();
-        string getMonthName();
-};
-
-/****************************************
-*         Member functions
-****************************************/
 // Constructors
 Date::Date()
 {
@@ -155,9 +162,60 @@ delete year;
 delete month;
 delete day;
 }
+// Overloaded operators
+bool Date :: operator>(const Date& rhs)
+{
+    bool isTrue = false;        // Just our boolean for our return value
+    if(getYear() > rhs.getYear())
+    {
+        isTrue = true;
+    }
+    else if(getYear() < rhs.getYear())
+    {
+        isTrue = false;
+    } 
+    else if(calcDayOfYear() > rhs.calcDayOfYear())
+    {
+         isTrue = true;           
+    }
+    return isTrue;
+}
 
+bool Date :: operator<(const Date& rhs)
+{
+     
+    bool isTrue = false;        // Just our boolean for our return value
+    if(getYear() < rhs.getYear())
+    {
+        isTrue = true;
+    }
+    else if(getYear() > rhs.getYear())
+    {
+        isTrue = false;
+    } 
+    else if(calcDayOfYear() < rhs.calcDayOfYear())
+    {
+         isTrue = true;        
+    }
+    return isTrue;
+}
+bool Date :: operator==(const Date& rhs)
+{
+    bool isTrue = false;        // Just our boolean for our return value
+    if((getYear() == rhs.getYear()) && (calcDayOfYear() == rhs.calcDayOfYear()))
+    {
+        isTrue = true;
+    }
+    return isTrue;
+}
+void Date :: operator=(const Date& rhs)
+{
+	setMonth(rhs.getMonth());
+	setDay(rhs.getDay());
+	setYear(rhs.getYear());
+}
 // Actual member functions
-bool Date::calcLeapYear() 
+bool Date::calcLeapYear() const
 {
     bool isLeapYear = false;    //holds our bool for leap year
     if ((getYear() % 400) == 0)
@@ -190,7 +248,7 @@ void Date::display()
     cout << "Day-of-week\t" << getDayOfWeek() << endl; 
 }
 
-int Date::calcDayOfYear()
+int Date::calcDayOfYear() const
 {
     int totalDays = 0;
 
@@ -234,7 +292,7 @@ char* Date::getDayOfWeek()
         }
         // totalDays should now have days since 1/1/1900
         // calc that value mod 7 and grab appropriate string
-        tmpDOfW = &daysOfWeek[totalDays%7][0];
+        tmpDOfW = (char*)&daysOfWeek[totalDays%7][0];
     }
     return tmpDOfW;
 }
@@ -252,7 +310,9 @@ void testDate02();
 void testDate03();
 void testDate05();
 void testDate06();
+void testDate07();
 void sendDateToFunction(Date theDate);
+
 /*****************************************
 *   main() - the function that executes
 *****************************************/
@@ -265,15 +325,16 @@ int main()
     //testDate02();
     //testDate03();
     //testDate05();
-    testDate06();
+    //testDate06();
+    testDate07();
  
     system("PAUSE");               // causes the program to pause
 	return 0;
 }  // end main
 
 void testDate01()
-{
-    Date testDate;      // Out testing date object 
+{  
+    Date testDate;      // Our testing date object 
     // Banner head 
     cout << endl << "******************************" << endl;
     cout << "***        testDate01      ***" << endl;
@@ -282,7 +343,7 @@ void testDate01()
 
     // test constructor
     cout << "testing contructor" << endl;
-    testDate.display();
+
 
     // test setters
     cout << endl << "Testing setters" << endl;
@@ -308,7 +369,6 @@ void testDate01()
     testDate.setYear(1996);
     testDate.display();
 }     
-     
 void testDate02()
 {
     
@@ -324,8 +384,6 @@ void testDate02()
     cout << endl << "Testing the three int constructor Date(month, day, year)" << endl;
     testThreeIntCon.display();
 }    
-
-
 void testDate03()
 {
     Date testDate;      // Out testing date object 
@@ -385,7 +443,6 @@ void testDate03()
     testDate.display();
 
 }
-
 void testDate05()
 {
     
@@ -417,31 +474,122 @@ void testDate06()
     cout << "******************************" << endl;
     cout << "Testing Copy Constructor" << endl;
     cout << "Assigning existing date as value for new date" << endl;
-    Date d1(1,2,1944);                  // create a date with a date in it
+    Date date1(1,2,1944);                  // create a date with a date in it
     cout << "First date is:"<< endl;
-    d1.display();
-    Date d2 = d1;                            // no values should be today's info
+    date1.display();
+    Date date2 = date1;                            // no values should be today's info
     cout << "New date is:"<< endl;
-    d2.display();
+    date2.display();
     cout << endl << endl << "Passing Date one to a function" << endl;
     cout << "values before are:" << endl;
-    d1.display();
-    sendDateToFunction(d1);
+    date1.display();
+    sendDateToFunction(date1);
     cout << "Back from function, original date's values are: " << endl;
-    d1.display();
+    date1.display();
     
 
+}
+void testDate07()
+{
+    Date testDate(7,4,1976);     // The date we will test against
+    Date equalDate(7,4,1976);    // An equivalent date
+    Date dayBefore(7,3,1976);    // The day before the test date
+    Date dayAfter(7,5,1976);     // The day after the test date
+    
+    cout << endl << "******************************" << endl;
+    cout << "***        testDate07      ***" << endl;
+    cout << "******************************" << endl;
+    cout << "Testing overridden >" << endl;
+    if(testDate > dayBefore)
+    {
+        cout << "succeeded for test > daybBefore" << endl;
+    }
+    else 
+    {
+        cout << "failed for test > dayBefore" << endl;
+    }
+    if(testDate > dayAfter)
+    {
+        cout << "failed for test > dayAfter" << endl;
+    }
+    else 
+    {
+        cout << "succeeded for test > dayAfter" << endl;
+    }
+    if (testDate > equalDate)
+    {
+        cout << "failed for test > equalDate" << endl;
+    }
+    {
+        cout << "succeeded for test > equalDate" << endl;
+    }
+    
+    cout << endl << endl << "Testing overridden <" << endl;
+    if(testDate < dayBefore)
+    {
+        cout << "failed for test < dayBefore" << endl;
+    }
+    else 
+    {
+        cout << "succeeded for test < dayBefore" << endl;
+    }
+    if(testDate < dayAfter)
+    {
+
+        cout << "succeeded for test < dayAfter" << endl;
+    }
+    else 
+    {
+        cout << "failed for test < dayAfter" << endl;
+    }
+    if (testDate < equalDate)
+    {
+        cout << "failed for test < equalDate" << endl;
+    }
+    {
+        cout << "succeeded for test < equalDate" << endl;
+    }
+    
+
+    cout << endl << endl << "Testing overridden ==" << endl;
+    if(testDate == dayBefore)
+    {
+        cout << "failed for test == dayBefore" << endl;
+    }
+    else 
+    {
+        cout << "succeeded for test == dayBefore" << endl;
+    }
+    if(testDate == dayAfter)
+    {
+        cout << "failed for test == dayAfter" << endl;
+    }
+    else 
+    {
+        cout << "succeeded for test == dayAfter" << endl;
+    }
+    if (testDate == equalDate)
+    {
+        cout << "succeeded for test == equalDate" << endl;
+
+    }
+    {
+        cout << "failed for test == equalDate" << endl;
+    }
+    testDate.display();
+    testDate = dayBefore;
+    testDate.display();
 }
 
 void sendDateToFunction(Date theDate)
 {
-    cout << endl << "in function date is: " << endl;
+    cout << "in function date is: " << endl;
     theDate.display();
     cout << "changing date to 07/04/1976" << endl;
     theDate.setYear(1976);
     theDate.setMonth(7);
     theDate.setDay(4);
-    cout << endl << "date is now" << endl;
+    cout << "date is now" << endl;
     theDate.display();
 }
 
