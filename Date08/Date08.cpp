@@ -2,8 +2,8 @@
 *
 *      program name:       Date07
 *      Author:             Chris Jones
-*      date due:           2014-03-24 
-*      remarks:            Seventh iteration of the Date Class
+*      date due:           2014-03-24
+*      remarks:            Eighth iteration of the Date Class
 *                          overriding "<",">" and "=" for the
 *                          date class
 *
@@ -50,7 +50,8 @@ class Date
 		bool operator>(const Date& rhs);
 		bool operator<(const Date& rhs);
 		bool operator==(const Date& rhs);
-        void operator=(const Date& rhs);
+        void operator-(int days);
+        void operator+(int days);        
 
         // setters
         void setYear(int x)        {*year = x;}
@@ -58,9 +59,9 @@ class Date
         void setDay(int x)         {*day = x;}
 
         //gettters
-        int getYear() const        {return *year;}
-        int getMonth() const            {return *month;}
-        int getDay() const              {return *day;}
+        int getYear() const            {return *year;}
+        int getMonth() const           {return *month;}
+        int getDay() const             {return *day;}
 
         bool calcLeapYear() const;
         void display();
@@ -83,9 +84,6 @@ const string Date :: monthNames[12]={ "January","February","March",
 /****************************************
 *         Member functions
 ****************************************/
-// static variables
-
-
 // Constructors
 Date::Date()
 {
@@ -159,13 +157,6 @@ delete month;
 delete day;
 }
 // Overloaded operators
-void Date :: operator=(const Date& rhs)
-{
-    setDay(rhs.getDay());
-    setMonth(rhs.getMonth());
-    setYear(rhs.getYear());
-}
-
 bool Date :: operator>(const Date& rhs)
 {
     bool isTrue = false;        // Just our boolean for our return value
@@ -179,13 +170,14 @@ bool Date :: operator>(const Date& rhs)
     }
     else if(calcDayOfYear() > rhs.calcDayOfYear())
     {
-        isTrue = true;
+         isTrue = true;
     }
     return isTrue;
 }
 
 bool Date :: operator<(const Date& rhs)
 {
+
     bool isTrue = false;        // Just our boolean for our return value
     if(getYear() < rhs.getYear())
     {
@@ -309,7 +301,6 @@ void testDate05();
 void testDate06();
 void testDate07();
 void sendDateToFunction(Date theDate);
-
 /*****************************************
 *   main() - the function that executes
 *****************************************/
@@ -330,8 +321,8 @@ int main()
 }  // end main
 
 void testDate01()
-{  
-    Date testDate;      // Out testing date object 
+{
+    Date testDate;      // Out testing date object
     // Banner head
     cout << endl << "******************************" << endl;
     cout << "***        testDate01      ***" << endl;
@@ -366,7 +357,7 @@ void testDate01()
     testDate.setYear(1996);
     testDate.display();
 }
-     
+
 void testDate02()
 {
 
@@ -382,6 +373,8 @@ void testDate02()
     cout << endl << "Testing the three int constructor Date(month, day, year)" << endl;
     testThreeIntCon.display();
 }
+
+
 void testDate03()
 {
     Date testDate;      // Out testing date object
@@ -441,6 +434,7 @@ void testDate03()
     testDate.display();
 
 }
+
 void testDate05()
 {
 
@@ -521,6 +515,7 @@ void testDate07()
     {
         cout << "succeeded for test > equalDate" << endl;
     }
+
     cout << endl << endl << "Testing overridden <" << endl;
     if(testDate < dayBefore)
     {
@@ -546,6 +541,7 @@ void testDate07()
     {
         cout << "succeeded for test < equalDate" << endl;
     }
+
 
     cout << endl << endl << "Testing overridden ==" << endl;
     if(testDate == dayBefore)
@@ -573,10 +569,6 @@ void testDate07()
     {
         cout << "failed for test == equalDate" << endl;
     }
-    cout << endl << endl << "Testing overridden =" << endl;
-    testDate.display();
-    testDate = dayBefore;
-    testDate.display();
 }
 
 void sendDateToFunction(Date theDate)
